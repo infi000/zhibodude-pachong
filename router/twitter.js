@@ -14,8 +14,9 @@ router.get("/:id",function(req,res,next){
 			   		return next(err);
 			   	}
 			   	//加载并且转码
-			   	var $=cherrio.load(sres.text, { decodeEntities: false });
+			   	var $=cheerio.load(sres.text, { decodeEntities: false });
 			   	var items=[];
+                              $("#stream-items-id .js-stream-item[data-item-type='tweet']").each(function(){})
 			 res.send($("#stream-items-id .js-stream-item[data-item-type='tweet']").html())
 			   })	
 	}
