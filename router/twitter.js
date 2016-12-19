@@ -8,7 +8,7 @@ var router=express.Router();
 
 router.get("/:id",function(req,res,next){
 	if(req.params.id=="1"){
-		superagent.get(websit)
+		superagent.get(website)
 			   .end(function(err,sres){
 			   	if(err){
 			   		return next(err);
