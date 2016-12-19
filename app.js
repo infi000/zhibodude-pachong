@@ -15,6 +15,7 @@ var fs = require("fs");
 var app = express();
 
 var gamefile = require("./router/gamefile");
+var twitter = require("./router/twitter");
 //设置跨域访问
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -26,7 +27,7 @@ app.all("*", function(req, res, next) {
 });
 
 app.use("/gamefile", gamefile);
-
+app.use("/twitter",twitter);
 
 app.listen("3000", function() {
     console.log("启动。。。。")
