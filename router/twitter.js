@@ -20,4 +20,6 @@ router.get("/:id",function(req,res,next){
 			   })	
 	}
 	
-})
+});
+
+module.exports = router;
