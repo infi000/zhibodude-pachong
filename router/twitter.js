@@ -33,7 +33,7 @@ router.get("/:id", function(req, res, next) {
                     dlimg(_headurl, "../public/img", _head);
                 });
                 //写如文件夹内
-                fs.writeFile("./public/data/twitter-user.json", sres.text, function(err) {
+                fs.writeFile("./public/data/twitter-user.json", items, function(err) {
                     if (err) {
                         console.error(err);
                     } else {
@@ -69,6 +69,12 @@ function dlimg(url, fp, name) {
         })
     })
 
-}
+};
+
+//post 读取twitter-user.json信息
+
+router.post("/post/:id",function(req,res,next){
+    if(req.params.id=="1")
+})
 
 module.exports = router;
