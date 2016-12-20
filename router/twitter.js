@@ -72,11 +72,11 @@ router.get("/:id", function(req, res, next) {
                             head: _head, //img
                             twitter: _twitter
                         };
-                        console.log(json);
+                //        console.log(json);
                         //写入data中
                         fs.writeFile("./public/data/" + _player + ".json", JSON.stringify(json), function(err) {
                             if (err) {
-                                console.error(err);
+                                console.log("写入错误");
                             } else {
                                 console.log("写入" + _player + ".json。成功！")
                             }
