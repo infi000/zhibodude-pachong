@@ -117,7 +117,9 @@ function dlimg(url, fp, name) {
             //保存图片
             var filename = path.join(__dirname, fp, name);
             fs.writeFile(filename, imageData, "binary", function(err) {
-                console.error(err)
+               if(err){
+                console.log(err);
+               }
             });
         });
         res.on("error", function(error) {
