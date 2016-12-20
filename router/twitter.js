@@ -49,39 +49,44 @@ router.get("/:id", function(req, res, next) {
                 });
                 //eq控制并发
                 eq.after("open", urllist.length, function(data) {
-                    for (var index in data) {
-                        var _player = index[0];
-                        var text = index[1];
-                        var $ = cheerio.load(text, { decodeEntities: false });
-                        var _banner = $(".ProfileCanopy-headerBg img").attr("src"); //img
-                        var _head = $(".ProfileAvatar-image").attr("src"); //img
-                        var _twitter = [];
-                        $("#stream-items-id js-stream-item[data-item-type='tweet']").each(function(index, element) {
-                            var $element = $(element);
-                            _twitter.push({
-                                thead: $element.find(".avatar").attr("src"), //img
-                                name: _player,
-                                time: $element.find("._timestamp").html(),
-                                msg: $element.find(".tweet-text").html(),
-                                img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
-                            })
-                        });
-                        var json = {
-                            player: _player,
-                            banner: _banner, //img
-                            head: _head, //img
-                            twitter: _twitter
-                        };
-                        console.log(json);
-                        //写入data中
-                        fs.writeFile("./public/data/" + _player + ".json", JSON.stringify(json), function(err) {
-                            if (err) {
-                                console.error(err);
-                            } else {
-                                console.log("写入" + _player + ".json。成功！")
-                            }
-                        })
-                    };
+                    // for (var index in data) {
+                    //     var _player = index[0];
+                    //     var text = index[1];
+                    //     var $ = cheerio.load(text, { decodeEntities: false });
+                    //     var _banner = $(".ProfileCanopy-headerBg img").attr("src"); //img
+                    //     var _head = $(".ProfileAvatar-image").attr("src"); //img
+                    //     var _twitter = [];
+                    //     $("#stream-items-id js-stream-item[data-item-type='tweet']").each(function(index, element) {
+                    //         var $element = $(element);
+                    //         _twitter.push({
+                    //             thead: $element.find(".avatar").attr("src"), //img
+                    //             name: _player,
+                    //             time: $element.find("._timestamp").html(),
+                    //             msg: $element.find(".tweet-text").html(),
+                    //             img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
+                    //         })
+                    //     });
+                    //     var json = {
+                    //         player: _player,
+                    //         banner: _banner, //img
+                    //         head: _head, //img
+                    //         twitter: _twitter
+                    //     };
+                    //     console.log(json);
+                    //     //写入data中
+                    //     fs.writeFile("./public/data/" + _player + ".json", JSON.stringify(json), function(err) {
+                    //         if (err) {
+                    //             console.error(err);
+                    //         } else {
+                    //             console.log("写入" + _player + ".json。成功！")
+                    //         }
+                    //     })
+                    // };
+                        for(var index in data){
+                            console.log(index);
+                        }
+
+
                 });
                 //遍历获取每一个链接参数
                 urllist.forEach(function(url) {
