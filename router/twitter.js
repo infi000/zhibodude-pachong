@@ -25,6 +25,7 @@ router.get("/:id", function(req, res, next) {
                 $("#stream-items-id .js-stream-item[data-item-type='user']").each(function(index, element) {
                     var $element = $(element);
                     var _player = $element.find(".fullname").html();
+                    var _username = $element.find(".username").html().replace("@","");
                     var _info = $element.find(".bio").html();
                     var _headurl = $element.find(".avatar").attr("src"); //图片源的地址
                     var _head = _headurl.split("/").pop(); //图片的名字
@@ -35,7 +36,7 @@ router.get("/:id", function(req, res, next) {
                         headurl: _headurl,
                     });
                     //保存球员地址到数组，准备调用
-                    urllist.push(["https://twitter.com/" + _player, _player]);
+                    urllist.push(["https://twitter.com/" + _username, _player]);
                     //加载保存img
                     dlimg(_headurl, "../public/img", _head);
                 });
