@@ -22,7 +22,7 @@ router.get("/:id", function(req, res, next) {
                     var _player = $element.find(".fullname").html();
                     var _info = $element.find(".bio").html();
                     var _headurl = $element.find(".avatar").attr("src");
-                    _head=_head.split("/").pop()
+                   var _head=_headurl.split("/").pop()
                     items.push({
                         player: _player,
                         info: _info,
@@ -38,21 +38,23 @@ router.get("/:id", function(req, res, next) {
 });
 //下载图片
 function dlimg (url, fp, name) {
+   console.log("程序执行");
     var imageData = "";
     app.get(url, function(req, res) {
         res.setEncoding("binary");
+        console.log("tupian 获取");
         res.on("data", function(chunk) {
             imageData += chunk;
         });
         res.on("end", function() {
-            console.log("图片下载成功！")；
+            console.log("图片下载成功！");
                 //保存图片
             var filename = path.join(__dirname, fp, name);
             fs.writeFile(filename, imageData, "binary", function(err) {
                 console.error(err)
             })
 
-        })；
+        });
         res.on("error", function(error) {
             console.error(err)
         })
