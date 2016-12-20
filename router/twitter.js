@@ -37,7 +37,7 @@ router.get("/:id", function(req, res, next) {
 
 });
 //下载图片
-function dlimg = function(url, fp, name) {
+function dlimg (url, fp, name) {
     var imageData = "";
     app.get(url, function(req, res) {
         res.setEncoding("binary");
