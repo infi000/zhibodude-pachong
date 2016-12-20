@@ -66,13 +66,16 @@ router.get("/:id", function(req, res, next) {
                             var $element = $(element);
                             var theadurl = $element.find(".avatar").attr("src");
                             var thead = theadurl.split("/").pop();
+                            var imgurl=$element.find(".js-adaptive-photo").attr("data-image-url");
+                            var img=imgurl.split("/").pop();
                             dlimg(theadurl, "../public/img", thead);
+                            dlimg(imgurl, "../public/img",img);
                             _twitter.push({
                                 thead: thead, //img
                                 name: _player,
                                 time: $element.find("._timestamp").html(),
                                 msg: $element.find(".tweet-text").html(),
-                                img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
+                                img: img, //img
                             });
                             // console.log(_twitter);
                         });
