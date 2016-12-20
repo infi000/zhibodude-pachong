@@ -66,7 +66,7 @@ router.get("/:id", function(req, res, next) {
                             var $element = $(element);
                             var theadurl = $element.find(".avatar").attr("src");
                             var thead = theadurl.split("/").pop();
-                            dlimg(theadurl, "../public/img", thead);
+                            // dlimg(theadurl, "../public/img", thead);
                             _twitter.push({
                                 thead: thead, //img
                                 name: _player,
