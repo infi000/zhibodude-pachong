@@ -58,6 +58,7 @@ router.get("/:id", function(req, res, next) {
                         var _head = $(".ProfileAvatar-image").attr("src"); //img
                         var _twitter = [];
                         $("#stream-items-id js-stream-item[data-item-type='tweet']").each(function(index, element) {
+
                             var $element = $(element);
                             _twitter.push({
                                 thead: $element.find(".avatar").attr("src"), //img
@@ -65,7 +66,8 @@ router.get("/:id", function(req, res, next) {
                                 time: $element.find("._timestamp").html(),
                                 msg: $element.find(".tweet-text").html(),
                                 img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
-                            })
+                            });
+                             console.log(_twitter);
                         });
                         var json = {
                             player: _player,
