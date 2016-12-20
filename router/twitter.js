@@ -25,7 +25,7 @@ router.get("/:id", function(req, res, next) {
                 $("#stream-items-id .js-stream-item[data-item-type='user']").each(function(index, element) {
                     var $element = $(element);
                     var _player = $element.find(".fullname").html();
-                    var _username = $element.find(".username").html().replace("@","");
+                    var _username = $element.find(".username").html().replace("@", "");
                     var _info = $element.find(".bio").html();
                     var _headurl = $element.find(".avatar").attr("src"); //图片源的地址
                     var _head = _headurl.split("/").pop(); //图片的名字
@@ -54,20 +54,27 @@ router.get("/:id", function(req, res, next) {
                         var _player = data[index][0];
                         var text = data[index][1];
                         var $ = cheerio.load(text, { decodeEntities: false });
-                        var _banner = $(".ProfileCanopy-headerBg img").attr("src"); //img
-                        var _head = $(".ProfileAvatar-image").attr("src"); //img
+                        var _bannerurl = $(".ProfileCanopy-headerBg img").attr("src"); //img
+                        var _banner = _bannerurl.split("/").pop();
+                        var _headurl = $(".ProfileAvatar-image").attr("src"); //img
+                        var _head = _headurl.split("/").pop(); //img
                         var _twitter = [];
+                        //加载保存img
+                        dlimg(_bannerurl, "../public/img", _banner);
+                        dlimg(_headurl, "../public/img", _head);
                         $("#stream-items-id .js-stream-item[data-item-type='tweet']").each(function(index, element) {
-
                             var $element = $(element);
+                            var theadurl = $element.find(".avatar").attr("src");
+                            var thead = theadurl.split("/").pop();
+                            dlimg(theadurl, "../public/img", thead);
                             _twitter.push({
-                                thead: $element.find(".avatar").attr("src"), //img
+                                thead: thead, //img
                                 name: _player,
                                 time: $element.find("._timestamp").html(),
                                 msg: $element.find(".tweet-text").html(),
                                 img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
                             });
-                             console.log(_twitter);
+                            console.log(_twitter);
                         });
                         var json = {
                             player: _player,
@@ -83,7 +90,7 @@ router.get("/:id", function(req, res, next) {
                             }
                         });
                     };
-                   
+
 
 
                 });
@@ -91,13 +98,13 @@ router.get("/:id", function(req, res, next) {
                 urllist.forEach(function(url) {
                     var _url = url[0];
                     var _player = url[1];
-                    _url = _url.replace(/\s|\xA0/g, "");//取消空格
-                     superagent.get(_url).end(function(err, ssres) {
-                       if (err) {
-                          return console.error(err);
-                     };
-                     console.log("获取：" + _player + "地址：" + _url + "成功");
-                     eq.emit("open",[_player,ssres.text]);
+                    _url = _url.replace(/\s|\xA0/g, ""); //取消空格
+                    superagent.get(_url).end(function(err, ssres) {
+                        if (err) {
+                            return console.error(err);
+                        };
+                        console.log("获取：" + _player + "地址：" + _url + "成功");
+                        eq.emit("open", [_player, ssres.text]);
                     })
                 });
                 res.send(items);
