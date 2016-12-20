@@ -67,13 +67,13 @@ router.get("/:id", function(req, res, next) {
                             var theadurl = $element.find(".avatar").attr("src");
                             var thead = theadurl.split("/").pop();
                             var imgurl = $element.find(".js-adaptive-photo").attr("data-image-url");
-
+                            console.log(imgurl);
                             dlimg(theadurl, "../public/img", thead);
-                            if (imgurl !== "") {
+                            if (imgurl) {
                                 var img = imgurl.split("/").pop();
                                 dlimg(imgurl, "../public/img", img);
-                            }else{
-                                var img="no";
+                            } else {
+                                var img = "no";
                             }
 
                             _twitter.push({
