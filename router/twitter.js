@@ -8,10 +8,11 @@ var https = require("https");
 
 var website = "https://twitter.com/infi00002/lists/player/members";
 var router = express.Router();
-var ep = new eventproxy();
+var eq = new eventproxy();
 
 router.get("/:id", function(req, res, next) {
     if (req.params.id == "1") {
+       var urllist=[];
         superagent.get(website)
             .end(function(err, sres) {
                 if (err) {
@@ -20,7 +21,6 @@ router.get("/:id", function(req, res, next) {
                 //加载并且转码
                 var $ = cheerio.load(sres.text, { decodeEntities: false });
                 var items = [];
-                var urllist = [];
                 $("#stream-items-id .js-stream-item[data-item-type='user']").each(function(index, element) {
                     var $element = $(element);
                     var _player = $element.find(".fullname").html();
@@ -50,7 +50,7 @@ router.get("/:id", function(req, res, next) {
             });
         //eq控制并发
         eq.after("open", urllist.length, function(data) {
-            for (var index; index in data) {
+            for (var index in data) {
                 var _player = index[0];
                 var text = index[1];
                 var $ = cheerio.load(text, { decodeEntities: false });
