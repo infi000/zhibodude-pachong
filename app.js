@@ -28,7 +28,7 @@ app.all("*", function(req, res, next) {
 
 app.use("/gamefile", gamefile);
 app.use("/twitter",twitter);
-app.use("static",express.static("public/img"));
+app.use("/static/img",express.static("public/img"));
 app.listen("3000", function() {
     console.log("启动。。。。")
 })
