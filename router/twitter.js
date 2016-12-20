@@ -55,12 +55,12 @@ router.get("/:id", function(req, res, next) {
                         var text = data[index][1];
                         var $ = cheerio.load(text, { decodeEntities: false });
                         var _bannerurl = $(".ProfileCanopy-headerBg img").attr("src"); //img
-                        var _banner = _player+"-banner";
+                        var _banner = _player+"-banner.jpg";
                         var _headurl = $(".ProfileAvatar-image").attr("src"); //img
                         var _head = _headurl.split("/").pop(); //img
                         var _twitter = [];
                         //加载保存img
-                        // dlimg(_bannerurl, "../public/img", _banner);
+                        dlimg(_bannerurl, "../public/img", _banner);
                         dlimg(_headurl, "../public/img", _head);
                         // $("#stream-items-id .js-stream-item[data-item-type='tweet']").each(function(index, element) {
                         //     var $element = $(element);
