@@ -33,7 +33,7 @@ router.get("/:id", function(req, res, next) {
                     dlimg(_headurl, "../public/img", _head);
                 });
                 //写如文件夹内
-                fs.writeFile("./public/data/twitter-user.json", items, function(err) {
+                fs.writeFile("./public/data/twitter-user.json", JSON.stringify(items), function(err) {
                     if (err) {
                         console.error(err);
                     } else {
