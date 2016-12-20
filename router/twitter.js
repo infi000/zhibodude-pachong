@@ -30,7 +30,7 @@ router.get("/:id", function(req, res, next) {
                         head: _head,
                         headurl:_headurl,
                     });
-                    dlimg(_headurl,"public/img",_head);
+                    dlimg(_headurl,"../public/img",_head);
                 })
                 res.send(items);
             })
