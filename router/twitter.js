@@ -40,7 +40,7 @@ router.get("/:id", function(req, res, next) {
 function dlimg (url, fp, name) {
    console.log("程序执行");
     var imageData = "";
-    https.get(url, function(req, res) {
+    https.get(url, function(res) {
         res.setEncoding("binary");
         console.log("tupian 获取");
         res.on("data", function(chunk) {
