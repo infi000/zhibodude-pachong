@@ -2,7 +2,7 @@ var express = require("express");
 var cheerio = require("cheerio");
 var superagent = require("superagent");
 var fs = require("fs");
-var http=require("http");
+var https=require("https");
 
 var website = "https://twitter.com/infi00002/lists/player/members";
 var router = express.Router();
@@ -40,7 +40,7 @@ router.get("/:id", function(req, res, next) {
 function dlimg (url, fp, name) {
    console.log("程序执行");
     var imageData = "";
-    http.get(url, function(req, res) {
+    https.get(url, function(req, res) {
         res.setEncoding("binary");
         console.log("tupian 获取");
         res.on("data", function(chunk) {
