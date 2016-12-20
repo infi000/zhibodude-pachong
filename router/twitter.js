@@ -71,10 +71,4 @@ function dlimg(url, fp, name) {
 
 };
 
-//post 读取twitter-user.json信息
-
-router.post("/post/:id",function(req,res,next){
-    if(req.params.id=="1")
-})
-
 module.exports = router;
