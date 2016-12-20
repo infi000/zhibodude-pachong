@@ -57,7 +57,7 @@ router.get("/:id", function(req, res, next) {
                         var _banner = $(".ProfileCanopy-headerBg img").attr("src"); //img
                         var _head = $(".ProfileAvatar-image").attr("src"); //img
                         var _twitter = [];
-                        $("#stream-items-id js-stream-item[data-item-type='tweet']").each(function(index, element) {
+                        $("#stream-items-id .js-stream-item[data-item-type='tweet']").each(function(index, element) {
 
                             var $element = $(element);
                             _twitter.push({
@@ -75,13 +75,13 @@ router.get("/:id", function(req, res, next) {
                             head: _head, //img
                             twitter: _twitter
                         };
-                        fs.writeFile("./public/data/" + _player + ".json", JSON.stringify(json), function(err) {
+                        fs.writeFile("./public/data/tw-" + _player + ".json", JSON.stringify(json), function(err) {
                             if (err) {
                                 console.log("写入错误");
                             } else {
                                 console.log("写入" + _player + ".json。成功！")
                             }
-                        })
+                        });
                     };
                    
 
