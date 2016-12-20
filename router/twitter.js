@@ -62,20 +62,20 @@ router.get("/:id", function(req, res, next) {
                         //加载保存img
                         dlimg(_bannerurl, "../public/img", _banner);
                         dlimg(_headurl, "../public/img", _head);
-                        $("#stream-items-id .js-stream-item[data-item-type='tweet']").each(function(index, element) {
-                            var $element = $(element);
-                            var theadurl = $element.find(".avatar").attr("src");
-                            var thead = theadurl.split("/").pop();
-                            // dlimg(theadurl, "../public/img", thead);
-                            _twitter.push({
-                                thead: thead, //img
-                                name: _player,
-                                time: $element.find("._timestamp").html(),
-                                msg: $element.find(".tweet-text").html(),
-                                img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
-                            });
-                            console.log(_twitter);
-                        });
+                        // $("#stream-items-id .js-stream-item[data-item-type='tweet']").each(function(index, element) {
+                        //     var $element = $(element);
+                        //     var theadurl = $element.find(".avatar").attr("src");
+                        //     var thead = theadurl.split("/").pop();
+                        //     // dlimg(theadurl, "../public/img", thead);
+                        //     _twitter.push({
+                        //         thead: thead, //img
+                        //         name: _player,
+                        //         time: $element.find("._timestamp").html(),
+                        //         msg: $element.find(".tweet-text").html(),
+                        //         img: $element.find(".js-adaptive-photo").attr("data-image-url"), //img
+                        //     });
+                        //     console.log(_twitter);
+                        // });
                         var json = {
                             player: _player,
                             banner: _banner, //img
