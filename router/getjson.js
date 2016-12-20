@@ -2,7 +2,7 @@
  * @Author: 张驰阳
  * @Date:   2016-12-20 12:24:12
  * @Last Modified by:   张驰阳
- * @Last Modified time: 2016-12-20 14:13:19
+ * @Last Modified time: 2016-12-20 14:25:04
  */
 
 'use strict';
@@ -18,11 +18,6 @@ router.post("/:id", function(req, res, next) {
         };
         res.send(data.toString());
     });
-    next();
-}, function(err, req, res, next) {
-    if (err) {
-        res.send("没有获取数据")
-    }
 })
 
 module.exports = router;
