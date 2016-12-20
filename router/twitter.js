@@ -82,9 +82,9 @@ router.get("/:id", function(req, res, next) {
                     //         }
                     //     })
                     // };
-                        for(var index in data){
-                            console.log(index);
-                        }
+                   //     for(var index in data){
+                     //       console.log(index);
+                       // }
 
 
                 });
@@ -92,13 +92,16 @@ router.get("/:id", function(req, res, next) {
                 urllist.forEach(function(url) {
                     var _url = url[0];
                     var _player = url[1];
-                    superagent.get(_url).end(function(err, ssres) {
-                        if (err) {
-                            return next(err);
-                        };
-                        console.log("获取：" + _player + "地址：" + _url + "成功");
-                        eq.emit("open", [_player, ssres.text]);
-                    })
+                           _url=_url.replace(/\s|\xA0/g,"");
+                  //  superagent.get(_url).end(function(err, ssres) {
+                    //    if (err) {
+                     //       return console.error(err);
+                      //  };
+                      //  console.log("获取：" + _player + "地址：" + _url + "成功");
+                      //  eq.emit("open", [_player, ssres.text]);
+                   // })
+                  console.log("_url:",_url);
+                  console.log("_player:",_player);
                 });
                 res.send(items);
             });
@@ -117,13 +120,17 @@ function dlimg(url, fp, name) {
             //保存图片
             var filename = path.join(__dirname, fp, name);
             fs.writeFile(filename, imageData, "binary", function(err) {
+<<<<<<< HEAD
                if(err){
                 console.log(err);
                }
+=======
+           if(err)     console.error(err)
+>>>>>>> edd3cddab3e125bc435a84adde30f0a0d23dabdb
             });
         });
         res.on("error", function(error) {
-            console.error(err)
+         if(err){console.error(err)};  
         })
     })
 
