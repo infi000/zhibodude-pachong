@@ -55,7 +55,7 @@ router.get("/:id", function(req, res, next) {
                         var text = data[index][1];
                         var $ = cheerio.load(text, { decodeEntities: false });
                         var _bannerurl = $(".ProfileCanopy-headerBg img").attr("src"); //img
-                        var _banner = _bannerurl.split("/").pop();
+                        var _banner = _player+"-banner";
                         var _headurl = $(".ProfileAvatar-image").attr("src"); //img
                         var _head = _headurl.split("/").pop(); //img
                         var _twitter = [];
