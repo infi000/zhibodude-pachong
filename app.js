@@ -2,7 +2,7 @@
  * @Author: 张驰阳
  * @Date:   2016-12-19 11:47:32
  * @Last Modified by:   张驰阳
- * @Last Modified time: 2016-12-20 14:21:04
+ * @Last Modified time: 2016-12-21 11:07:42
  */
 
 'use strict';
@@ -17,6 +17,7 @@ var app = express();
 var gamefile = require("./router/gamefile");
 var twitter = require("./router/twitter");
 var getjson = require("./router/getjson");
+var wenzi = require("./router/3g");
 //设置跨域访问
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,7 +31,8 @@ app.all("*", function(req, res, next) {
 app.use("/gamefile", gamefile);
 app.use("/twitter",twitter);
 app.use("/getjson",getjson);
-app.use("static",express.static("public/img"));
+app.use("/wenzi",wenzi);
+// app.use("/static",express.static("public/img"));
 app.use("/static/img",express.static("public/img"));
 app.listen("3000", function() {
     console.log("启动。。。。")
