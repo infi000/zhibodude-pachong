@@ -14,6 +14,7 @@ var fs = require("fs");
 
 var date = function() {
     var oDate = new Date();
+    oDate.setDate(oDate.getDate()+1);//国外加一天
     var year = oDate.getFullYear(); //获取系统的年；
     var month = oDate.getMonth() + 1; //获取系统月份，由于月份是从0开始计算，所以要加1
     var day = oDate.getDate(); // 获取系统日，
