@@ -2,7 +2,7 @@
  * @Author: 张驰阳
  * @Date:   2016-12-19 11:47:32
  * @Last Modified by:   张驰阳
- * @Last Modified time: 2016-12-19 17:02:33
+ * @Last Modified time: 2016-12-23 18:25:26
  */
 
 'use strict';
@@ -26,7 +26,7 @@ app.all("*", function(req, res, next) {
 });
 
 app.use("/gamefile", gamefile);
-
+app.use(express.static("./public"));
 
 app.listen("3000", function() {
     console.log("启动。。。。")
