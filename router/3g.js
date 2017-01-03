@@ -2,7 +2,7 @@
  * @Author: 张驰阳
  * @Date:   2016-12-21 10:12:11
  * @Last Modified by:   张驰阳
- * @Last Modified time: 2016-12-21 12:27:12
+ * @Last Modified time: 2017-01-03 09:43:41
  */
 
 'use strict';
@@ -18,6 +18,12 @@ var date = function(num) {
     var year = oDate.getFullYear(); //获取系统的年；
     var month = oDate.getMonth() + 1; //获取系统月份，由于月份是从0开始计算，所以要加1
     var day = oDate.getDate(); // 获取系统日，
+    if(month<10){
+        month="0"+month;
+    };
+    if(day<10){
+        day="0"+day;
+    }
     return year + "-" + month + "-" + day
 };
 // var website = "http://newdata.3g.cn/jsonInterface/index.php/Nba/Data/schedulelive?dataType=1&date=" + date(num);
