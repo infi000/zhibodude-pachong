@@ -2,7 +2,7 @@
  * @Author: 张驰阳
  * @Date:   2016-12-27 10:03:03
  * @Last Modified by:   张驰阳
- * @Last Modified time: 2017-01-10 18:05:01
+ * @Last Modified time: 2017-01-10 18:37:59
  */
 
 'use strict';
@@ -36,26 +36,30 @@ router.get("/:id", function(req, res) {
     if (req.params.id == "1") {
         //创建URL数组
         var urlList = [];
-        for (var i = 0; i <= 100; i += 10) {
-            urlList.push(["http://news.baidu.com/ns?word=%E7%A9%BA%E9%93%81%20%E6%96%B0%E8%83%BD%E6%BA%90&pn=" + i + "&cl=2&ct=0&tn=news&ie=utf-8&bt=0&et=0"]);
+        for (var i = 0; i <= 700; i += 50) {
+            urlList.push(["http://news.baidu.com/ns?word=%E7%A9%BA%E9%93%81%20%E6%96%B0%E8%83%BD%E6%BA%90&pn=" + i + "&cl=2&ct=0&tn=newsdy&rn=50&ie=utf-8&bt=0&et=0"]);
         };
         //遍历每个链接
         urlList.forEach(function(url) {
-            url = url[0];
-            superagent.get(url)
-                .end(function(err, sres) {
-                    if (err) {
-                        res.send(err);
-                    };
-                    console.log("wanc")
-                    eq.emit("open", sres.text);
-                })
-        });
-        //eq控制并发
+                var go = function() {
+                    url = url[0];
+                    superagent.get(url).buffer()
+                        .end(function(err, sres) {
+                            if (err) {
+                                res.send(err);
+                            };
+                            console.log("wanc")
+                            eq.emit("open", sres.text);
+                        })
+                };
+                go();
+                // setTimeout("go", 5000)
+            })
+            //eq控制并发
         eq.after("open", urlList.length, function(data) {
             var item = [];
             var day = nowDate(0);
-            var num="1";
+            var num = "1";
             // item[day] = {
             //     day: day,
             //     news: []
@@ -64,7 +68,7 @@ router.get("/:id", function(req, res) {
                 var text = data[0];
                 var $ = cheerio.load(text, { decodeEntities: false });
                 $(".result").each(function(index, element) {
-           
+
                     var $ele = $(element);
                     var title = $ele.find(".c-title a").html();
                     var at = $ele.find(".c-author").html();
@@ -79,7 +83,7 @@ router.get("/:id", function(req, res) {
                     };
                     var link = $ele.find(".c-title a").attr("href");
                     item.push({
-                        id:num,
+                        id: num,
                         title: title,
                         from: _from,
                         date: _time,
@@ -88,7 +92,7 @@ router.get("/:id", function(req, res) {
                     num++;
                 });
             };
-            fs.writeFile("./public/data/news.json", item, function(err) {
+            fs.writeFile("./public/data/news.json", JSON.stringify(item), function(err) {
                 if (err) {
                     console.error(err)
                 } else {
@@ -97,8 +101,8 @@ router.get("/:id", function(req, res) {
             })
             res.send(item);
         })
+    }
 
-    };
 });
 
 module.exports = router;
