@@ -42,7 +42,7 @@ router.get("/:id", function(req, res) {
 
                     });
             }
-        }, 5000);
+        }, 120000);
         res.send("获取数据中。。。。。。关闭网页即可。。。。。")
     } else if (req.params.id == "2") {
         get = 2;
