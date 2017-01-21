@@ -26,8 +26,9 @@ router.get("/:id/:time", function(req, res) {
         start = setInterval(function() {
             if (get == 1) {
                 superagent.get(website).end(function(err, sres) {
+                    res.send(sres);
                     if (err) {
-                        return next(err);
+                        return console.log(err);
                     }
                     //写入gamefile.json中
                     fs.writeFile("./public/data/gamefile.json", sres.text, function(err) {
@@ -41,7 +42,7 @@ router.get("/:id/:time", function(req, res) {
                 });
             }
         }, setTime)
-        res.send("获取数据中。。。。。。关闭网页即可。。。。。");
+        // res.send("获取数据中。。。。。。关闭网页即可。。。。。");
     } else if (req.params.id == "2") {
         get = 2;
         clearInterval(start);

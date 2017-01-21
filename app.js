@@ -21,6 +21,7 @@ var wenzi = require("./router/3g");
 var jrs = require("./router/jrs");
 var hupu = require("./router/hupu");
 var news = require("./router/news");
+var espn = require("./router/espn");
 //设置跨域访问
 app.all("*", function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -38,6 +39,7 @@ app.use("/wenzi",wenzi);
 app.use("/jrs",jrs);
 app.use("/hupu",hupu);
 app.use("/news",news);
+app.use("/espn",espn);
 // app.use("/static",express.static("public/img"));
 app.use("/static/img",express.static("public/img"));
 app.listen("3000", function() {
