@@ -18,7 +18,8 @@ router.get("/:id", function(req, res) {
             init.yz();
             setTimeout(function() {
                 click();
-            }, 1000 * 60*10)
+                console.log(new Date());
+            }, 1000 * 60*6)
         } else {
             return
         }
