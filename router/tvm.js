@@ -18,7 +18,6 @@ router.get("/:id", function(req, res) {
             init.yz();
             setTimeout(function() {
                 click();
-                console.log(new Date());
             }, 1000 * 60*6)
         } else {
             return
@@ -62,10 +61,10 @@ function Init(x) {
                 return console.error(err);
             };
             console.log("大楼ID：" + i, "收租：" + res.text);
-            var obj = '<p>大楼<span style="color:red">' + i + '</span>：';
-            obj += '<b>金币：</b><span style="color:blue">' + JSON.parse(res.text).money.coin + '</span> ';
-            obj += ' <b>余额：</b><span style="color:blue">' + JSON.parse(res.text).money.bal + '</span></p>';
-            html += '<li>' + obj;
+            // var obj = '<p>大楼<span style="color:red">' + i + '</span>：';
+            // obj += '<b>金币：</b><span style="color:blue">' + JSON.parse(res.text).money.coin + '</span> ';
+            // obj += ' <b>余额：</b><span style="color:blue">' + JSON.parse(res.text).money.bal + '</span></p>';
+            // html += '<li>' + obj;
             sh(i);
         });
 
@@ -86,14 +85,14 @@ function Init(x) {
                     return console.error(err);
                 };
                 console.log(res.text);
-                var obj = '<p>大楼<span style="color:red">' + i + '</span>：';
-                if (JSON.parse(res.text).code == "200") {
-                    obj += '收花<span style="color:blue"' + JSON.parse(res.text).data.num + '</span>朵';
-                } else {
-                    obj += JSON.parse(res.text).msg;
-                };
-                obj += '</p>';
-                html += obj + '</li>';
+                // var obj = '<p>大楼<span style="color:red">' + i + '</span>：';
+                // if (JSON.parse(res.text).code == "200") {
+                //     obj += '收花<span style="color:blue"' + JSON.parse(res.text).data.num + '</span>朵';
+                // } else {
+                //     obj += JSON.parse(res.text).msg;
+                // };
+                // obj += '</p>';
+                // html += obj + '</li>';
             });
     };
 
@@ -106,7 +105,7 @@ function Init(x) {
             i++;
             setTimeout(function() { rent(i) }, 500)
         } else {
-            console.log("over")
+            console.log("over",new Date())
             // that.res.send("<ul>" + html + "</ul>");
         }
     };
